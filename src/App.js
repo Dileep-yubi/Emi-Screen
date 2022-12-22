@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { EMIComponent } from "./Components/EMIComponent";
+import { MoneyComponent } from "./Components/MoneyComponent";
+import {
+  FlexDiv,
+  Footer,
+  H1,
+  StyledButton,
+} from "./Components/StyledComponents";
+import Summary from "./Components/Summary";
 
-function App() {
+export const App = () => {
+  const [selected, setSelected] = useState(null);
+  const emis = [<EMIComponent />, <EMIComponent />, <EMIComponent />];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="rootContainer">
+      <header className="headerContainer">
+        <H1>SMARTBank</H1>
+        <FlexDiv>
+          <img
+            src="https://cardinsider.com/wp-content/uploads/2021/10/slider.png.webp"
+            alt="Fallback"
+            height="150px"
+            width="50%"
+          />
+          <div>Convert your outstanding amount into EMIs with ease!</div>
+        </FlexDiv>
       </header>
+      <div className="emiContentContainer">
+        <H1>Choose EMI plan</H1>
+        <div style={{ padding: "20px" }}>
+          <Summary
+            title="Total outstanding amount"
+            value={
+              <span style={{ fontWeight: "bolder" }}>
+                <MoneyComponent amount={{ currency: "USD", value: 10000 }} />
+              </span>
+            }
+          />
+        </div>
+        <div className="flex-container">
+          {Array(0, 1, 2).map((elements, index) => (
+            <EMIComponent
+              key={index}
+              handleSelected={() => setSelected(index + 1)}
+              isSelected={index === selected - 1}
+            />
+          ))}
+        </div>
+      </div>
+      <Footer>
+        <FlexDiv>
+          <StyledButton>Not Now</StyledButton>
+          <StyledButton primary disabled={!selected}>
+            Submit
+          </StyledButton>
+        </FlexDiv>
+      </Footer>
     </div>
   );
-}
-
-export default App;
+};
