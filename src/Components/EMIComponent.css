@@ -1,3 +1,7 @@
+.emiPlanWrapper {
+  width: 100%;
+}
+
 .emiComponent {
   border: 1px solid #d6d3d3;
   border-radius: 12px;

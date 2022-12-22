@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { EMIComponent } from "./Components/EMIComponent";
+import { EMIPlanComponent } from "./Components/EMIPlanComponent";
 import { MoneyComponent } from "./Components/MoneyComponent";
 import {
   FlexDiv,
@@ -12,7 +12,11 @@ import Summary from "./Components/Summary";
 
 export const App = () => {
   const [selected, setSelected] = useState(null);
-  const emis = [<EMIComponent />, <EMIComponent />, <EMIComponent />];
+  const emis = [
+    <EMIPlanComponent />,
+    <EMIPlanComponent />,
+    <EMIPlanComponent />,
+  ];
   return (
     <div className="rootContainer">
       <header className="headerContainer">
@@ -40,13 +44,10 @@ export const App = () => {
           />
         </div>
         <div className="flex-container">
-          {Array(0, 1, 2).map((elements, index) => (
-            <EMIComponent
-              key={index}
-              handleSelected={() => setSelected(index + 1)}
-              isSelected={index === selected - 1}
-            />
-          ))}
+          <EMIPlanComponent
+            selected={selected}
+            handleSelected={(index) => setSelected(index + 1)}
+          />
         </div>
       </div>
       <Footer>
