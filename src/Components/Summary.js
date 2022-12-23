@@ -5,7 +5,7 @@ const Summary = (props) => {
   return (
     <FlexDiv
       flexDirection="row"
-      justifyContent="space-between"
+      justifyContent={`${props.isRadio ? "space-between" : "center"}`}
       alignItems="center">
       <span>{props.title}</span>
       <span>{props.value}</span>

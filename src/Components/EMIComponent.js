@@ -18,7 +18,10 @@ export const EMIComponent = (props) => {
             {" "}
             <Divider />
             <div style={{ padding: "6px" }}>
-              <BreakDown summary={element.children} />
+              <BreakDown
+                isRadio={props.isRadio || false}
+                summary={element.children}
+              />
             </div>
           </>
         )}

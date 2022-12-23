@@ -90,7 +90,7 @@ export const EMIPlanComponent = (props) => {
             key={index}
             className="emiPlanWrapper"
             onChange={() => props.handleSelected(index)}>
-            <EMIComponent isSelected={isSelected} element={e} />
+            <EMIComponent isRadio={true} isSelected={isSelected} element={e} />
           </div>
         );
       })}
